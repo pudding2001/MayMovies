@@ -1,0 +1,217 @@
+﻿@model MayMoviesASP.Models.Movie
+
+@{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+    {
+        Text = "(G) Children",
+        Value = "G"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "(PG) Under parent guidence",
+        Value = "PG",
+        Selected = true
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "(PG-13) +13",
+        Value = "PG-13"
+    });
+
+    listItems.Add(new SelectListItem
+    {
+        Text = "(R) Adults Only",
+        Value = "R",
+        Selected = true
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "Not-rated",
+        Value = "Not-rated",
+        Selected = true
+    });
+}
+
+<header class="main-header-navbar d-flex flex-row shadow-sm sticky-top">
+    <div class="col-md-4">
+        <div class="nav-logo m-3">
+            <a href="/" class="brand-name">
+                <img src="/images/MayMovies.png" alt="MayMovies"
+                     style="margin-left: 80px; margin-top: 3px;">
+            </a>
+        </div>
+    </div>
+
+    <div class="d-flex col-md-4">
+        <div class="main-topnavlinks p-3 m-3">
+            <a href="#change password">Change Password</a>
+            <a class="active" href="#home">Home</a>
+        </div>
+    </div>
+
+    <div class=" d-inline-flex col-md-4">
+        <div class="main-topnavlinks p-2 m-3">
+            <p style="font-size: 17px; color: darkgrey; font-weight: bold; display: inline-block;">Welcome admin &emsp; |</p>
+            <a class="pl-4 m-0" href="#logout">Log out</a>
+        </div>
+    </div>
+</header>
+
+<main class="text-light font-weight-bold">
+    <div class="m-5">
+        <h1>Add Movie</h1>
+        <hr>
+        <h3 class="p-2" style="background-color:rgba(30, 143, 255, 0.74); border-radius: 4px; width: fit-content;">
+            Movie Details
+        </h3>
+
+
+
+        <div class="container">
+            <form asp-action="CreateMovie" method="post" asp-controller="admin" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <ul class="list-group text-light ml-3">
+                    <li class="list-group-item bg-transparent border-top-0 border-right-0 border-left-0">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="Mname">Movie Name</label>
+                            </div>
+                            <div class="col-75">
+                                <input asp-for="Name" type="text" id="Mname" placeholder="Enter movie title..">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent border-right-0 border-left-0">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="poster">Poster</label>
+                            </div>
+                            <div class="col-75 ">
+                                <input asp-for="ImageFile" />
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent border-right-0 border-left-0">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="cast">Cast</label>
+                            </div>
+                            <div class="col-75">
+                                <input asp-for="Actors" type="text" id="cast" placeholder="Enter cast..">
+                                <span asp-validation-for="Actors" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent border-right-0 border-left-0">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="genre">Genre</label>
+                            </div>
+                            <div class="col-75">
+                                <input asp-for="Genre" type="text" id="genre"  placeholder="Enter genre..">
+                                <span asp-validation-for="Genre" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent border-bottom-0 border-right-0 border-left-0">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="country">Country</label>
+                            </div>
+                            <div class="col-75">
+                                <select asp-for="Country" id="country" name="Country">
+                                    <option value="australia">Australia</option>
+                                    <option value="canada">Canada</option>
+                                    <option value="usa">USA</option>
+                                    <option value="uk">UK</option>
+                                    <option value="italy">Italy</option>
+                                    <option value="mexico">Mexico</option>
+                                    <option value="spain">Spain</option>
+                                    <option value="france">France</option>
+                                    <option value="korea">Korea</option>
+                                    <option value="china">China</option>
+                                    <option value="japan">Japan</option>
+                                    <option value="russia">Russia</option>
+                                </select>
+                                <span asp-validation-for="Country" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent border-right-0 border-left-0">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="language">Language</label>
+                            </div>
+                            <div class="col-75">
+                                <select asp-for="Language" id="language" name="Language">
+                                    <option value="australia">English</option>
+                                    <option value="italian">Italian</option>
+                                    <option value="mexican">Mexican</option>
+                                    <option value="spanish">Spanish</option>
+                                    <option value="french">French</option>
+                                    <option value="korean">Korean</option>
+                                    <option value="chinese">Chinese</option>
+                                    <option value="japanese">Japanese</option>
+                                    <option value="russian">Russian</option>
+                                </select>
+                                <span asp-validation-for="Language" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent border-right-0 border-left-0">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="quality">Quality</label>
+                            </div>
+                            <div class="col-75">
+                                <label class="container">
+                                    720p
+                                    @Html.RadioButtonFor(model => model.Quality, "720p")
+                                </label>
+                                <label class="container">
+                                    1080p
+                                    @Html.RadioButtonFor(model => model.Quality, "1080p")
+                                </label>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent border-right-0 border-left-0">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="age-rating">Age rating</label>
+                            </div>
+                            <div class="col-75">
+                                @Html.DropDownListFor(model => model.AgeRating, listItems, "G", new { @class = "form-control", })
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent border-right-0 border-left-0">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="rating">Rating</label>
+                            </div>
+                            <div class="col-75">
+                                <input asp-for="Rating" type="text" id="rating" name="Rating" placeholder="Enter rating..">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent border-right-0 border-left-0">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="rating">Year</label>
+                            </div>
+                            <div class="col-75">
+                                <input asp-for="Year" type="number" id="year" name="Year" placeholder="Enter year..">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="row">
+                    <button id="button-qlty" type="submit" value="Done" class="p-2" style="font-size: 15px;">Done</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

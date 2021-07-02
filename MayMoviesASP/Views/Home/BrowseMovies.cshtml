@@ -1,0 +1,211 @@
+﻿@model IEnumerable<MayMoviesASP.Models.Movie>
+
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<header class="main-header-navbar d-flex flex-row shadow-sm sticky-top">
+    <div class="col-md-3">
+        <div class="nav-logo m-3">
+            <a href="/" class="brand-name"><img src="/images/MayMovies.png" alt="MayMovies" style="margin-left: 30px; margin-top: 3px;"></a>
+        </div>
+    </div>
+
+    <div class="d-flex col-md-4">
+        <div class="main-topnavlinks p-3 m-3">
+            <a href="/home/BrowseMovies">Browse Movies</a>
+            <a class="active" href="/">Home</a>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <form asp-action="SearchMovies" method="post" asp-controller="home" enctype="multipart/form-data">
+            <div class=" input-group-container p-1 bg-light rounded rounded-pill shadow-sm">
+                <div class="input-group">
+                    <input name="searchText" type="text" id="searchText" placeholder="Search for a movie or an actor/actress..." class="form-control border-0">
+                    <div class="input-group-append">
+                        <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</header>
+
+<main>
+    <div class="row justify-content-center">
+        <form asp-action="SearchMovies" method="post" asp-controller="home" enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                    <div class="bg-light rounded">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-success" type="submit">Go</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+    <div class="row justify-content-center">
+        <div class="dropdown m-4">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Year</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Link 1</a>
+                <a class="dropdown-item" href="#">Link 2</a>
+                <a class="dropdown-item" href="#">Link 3</a>
+            </div>
+        </div>
+        <div class="dropdown m-4">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Language</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Link 1</a>
+                <a class="dropdown-item" href="#">Link 2</a>
+                <a class="dropdown-item" href="#">Link 3</a>
+            </div>
+        </div>
+        <div class="dropdown m-4">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Country</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Link 1</a>
+                <a class="dropdown-item" href="#">Link 2</a>
+                <a class="dropdown-item" href="#">Link 3</a>
+            </div>
+        </div>
+        <div class="dropdown m-4">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Genre</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Link 1</a>
+                <a class="dropdown-item" href="#">Link 2</a>
+                <a class="dropdown-item" href="#">Link 3</a>
+            </div>
+        </div>
+        <div class="dropdown m-4">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Age Rating</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Link 1</a>
+                <a class="dropdown-item" href="#">Link 2</a>
+                <a class="dropdown-item" href="#">Link 3</a>
+            </div>
+        </div>
+        <div class="dropdown m-4">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Quality</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Link 1</a>
+                <a class="dropdown-item" href="#">Link 2</a>
+                <a class="dropdown-item" href="#">Link 3</a>
+            </div>
+        </div>
+    </div>
+        <div class="container ml-5 ">
+            <div class="d-flex flex-row flex-wrap">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3 col-sm-6 mb-2">
+                        <a href="#" class="product">
+                            <div class="pop-mov">
+                                <img src="/images/@Html.DisplayFor(modelItem => item.Image)" alt="" width="250" height="300">
+                            </div>
+                            <div class="product__meta">
+                                @{
+                                    switch (item.Rating)
+                                    {
+                                        case 1:
+                                            <span class="fa fa-star" style="color: rgb(31, 144, 236)"></span>
+                                            <span class="fa fa-star-o" style="color: grey"></span>
+                                            <span class="fa fa-star-o" style="color: grey"></span>
+                                            <span class="fa fa-star-o" style="color: grey"></span>
+                                            <span class="fa fa-star-o" style="color: grey"></span>
+                                            break;
+                                        case 2:
+                                            <span class="fa fa-star" style="color: rgb(31, 144, 236)"></span>
+                                            <span class="fa fa-star" style="color: rgb(31, 144, 236)"></span>
+                                            <span class="fa fa-star-o" style="color: grey"></span>
+                                            <span class="fa fa-star-o" style="color: grey"></span>
+                                            <span class="fa fa-star-o" style="color: grey"></span>
+                                            break;
+                                        case 3:
+                                            <span class="fa fa-star" style="color: rgb(31, 144, 236)"></span>
+                                            <span class="fa fa-star" style="color: rgb(31, 144, 236)"></span>
+                                            <span class="fa fa-star" style="color: rgb(31, 144, 236)"></span>
+                                            <span class="fa fa-star-o" style="color: grey"></span>
+                                            <span class="fa fa-star-o" style="color: grey"></span>
+                                            break;
+                                        case 4:
+                                            <span class="fa fa-star" style="color: rgb(31, 144, 236)"></span>
+                                            <span class="fa fa-star" style="color: rgb(31, 144, 236)"></span>
+                                            <span class="fa fa-star" style="color: rgb(31, 144, 236)"></span>
+                                            <span class="fa fa-star" style="color: rgb(31, 144, 236)"></span>
+                                            <span class="fa fa-star-o" style="color: grey"></span>
+                                            break;
+                                        case 5:
+                                            <span class="fa fa-star" style="color: rgb(31, 144, 236)"></span>
+                                            <span class="fa fa-star" style="color: rgb(31, 144, 236)"></span>
+                                            <span class="fa fa-star" style="color: rgb(31, 144, 236)"></span>
+                                            <span class="fa fa-star" style="color: rgb(31, 144, 236)"></span>
+                                            <span class="fa fa-star-o" style="color: rgb(31, 144, 236)"></span>
+                                            break;
+                                        default:
+                                            <span class="fa fa-star-o" style="color:grey"></span>
+                                            <span class="fa fa-star-o" style="color: grey"></span>
+                                            <span class="fa fa-star-o" style="color: grey"></span>
+                                            <span class="fa fa-star-o" style="color: grey"></span>
+                                            <span class="fa fa-star-o" style="color: grey"></span>
+                                            break;
+                                    }
+                                }
+                                <p>@Html.DisplayFor(modeItem => item.Name)</p>
+                                <p class="big">@Html.DisplayFor(modelItem => item.Genre)</p>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+</main>
+
+<!-- |||||||||||| FOOTER ||||||||||||| -->
+<footer class="main-footer-navbar ">
+    <section class="info">
+        <div class="container">
+            <div class="row row-sm-justify text-sm-left">
+                <!-- Brand -->
+                <a href="/" class="brand-name"><img src="/images/MayMovies.png" alt="MayMovies" style="margin-left: -8px;"></a>
+                <!-- END Brand -->
+            </div>
+
+            <div class="row justify-content-center mt-4">
+                <ul class="bottomnavlinks-list d-flex d-inline-flex">
+                    <li><a class="font-weight-bold" href="#contact">Contact</a></li> |
+                    <li><a class="font-weight-bold" href="#about">About</a></li> |
+                    <li>
+                        <a href="#facebook">
+                            <div class="container" id="social-link">
+                                <img src="/images/facebookicon.png" alt="Facebook" class="image img-fluid">
+                            </div>
+                        </a>
+                    </li>
+                    |
+                    <li>
+                        <a href="#twitter">
+                            <div class="container" id="social-link">
+                                <img src="/images/twittericon.png" alt="Twitter" class="image img-fluid">
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Copyright -->
+            <div class="row justify-content-center" style="margin-top: -30px; margin-bottom: -30px;">
+                <p class="copyright">
+                    MayMovies &copy;
+                    <span id="copyright-year">2021</span>
+                    All rights reserved.
+                    <span class="rd-navbar--switch-to-desktop"></span>
+                    <a href="#">Terms of use</a> |
+                    <a href="#">Privacy Policy</a>
+                    <!-- {%FOOTER_LINK} -->
+                </p>
+            </div>
+            <!-- END Copyright -->
+        </div>
+    </section>
+</footer>

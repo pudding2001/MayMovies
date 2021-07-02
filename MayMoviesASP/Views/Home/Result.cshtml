@@ -1,0 +1,185 @@
+﻿@model Movie 
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<header class="main-header-navbar d-flex flex-row shadow-sm sticky-top">
+    <div class="col-md-3">
+        <div class="nav-logo m-3">
+            <a href="/" class="brand-name"><img src="/images/MayMovies.png" alt="MayMovies" style="margin-left: 30px; margin-top: 3px;"></a>
+        </div>
+    </div>
+
+    <div class="d-flex col-md-4">
+        <div class="main-topnavlinks p-3 m-3">
+            <a href="/home/BrowseMovies">Browse Movies</a>
+            <a class="active" href="#home">Home</a>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <form asp-action="SearchMovies" method="post" asp-controller="home" enctype="multipart/form-data">
+            <div class=" input-group-container p-1 bg-light rounded rounded-pill shadow-sm">
+                <div class="input-group">
+                    <input name="searchText" type="text" id="searchText" placeholder="Search for a movie or an actor/actress..." class="form-control border-0">
+                    <div class="input-group-append">
+                        <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</header>
+
+<main>
+    <div class="d-flex flex-row mt-3 ml-5 mr-5 mb-5 p-5" style="background-color: #0909118f;">
+        <div class="col-md-4">
+            <div class="mov-poster">
+                <img src="" alt="" width="250" height="380">
+            </div>
+            <div class="pt-3">
+                <button id="button-dnld" type="submit" style="width: 250px;"><i class="fa fa-download"></i>Download</button>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <table class="table table-bordered text-secondary">
+                <thead class="text-light">
+                    <tr>
+                        <th><h4>@Html.DisplayFor(modelItem => modelItem.Name)</h4></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Language</th>
+                        <td>@Html.DisplayFor(modelItem => modelItem.Language)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Country</th>
+                        <td>@Html.DisplayFor(modelItem => modelItem.Country)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Age rating</th>
+                        <td>@Html.DisplayFor(modelItem => modelItem.AgeRating)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Genre</th>
+                        <td>@Html.DisplayFor(modelItem => modelItem.Genre)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Rating</th>
+                        <td>@Html.DisplayFor(modelItem => modelItem.Rating)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Quality</th>
+                        <td>
+                            <p>
+                                Available in:
+                                @{
+                                    if (Model.Quality == "720p") {
+                                   <button id="button-qlty">720p</button>
+                                    }
+                                    else {
+                                    <button id="button-qlty">1080p</button>
+                                        }
+                                    }
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Subtitles</th>
+                        <td><button id="button-qlty" type="submit"><i class="fa fa-download"></i>Download Subtitles</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- <h2>Movie's name</h2>
+            <p>Year</p>
+            <p>Genre</p>
+            <br>
+            <p>Available in: <button id="button-qlty" type="submit">720p.BluRay</button>
+                             <button id="button-qlty" type="submit">1080p.BluRay</button>
+            </p>
+            <br>
+            <button id="button-qlty" type="submit"><i class="fa fa-download"></i>Download Subtitles</button> -->
+
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+    <div class="row m-5 p-5" style="background-color: #0909118f;">
+        <div class="col-md-7 pt-3 pr-5 pl-3 pb-5">
+            <h4 class="text-light mb-4">Synopsis</h4>
+            <p class="text-light">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Excepturi consectetur nostrum fuga optio placeat est, officiis voluptatibus mollitia,
+                non sapiente hic ab dignissimos error nisi at, nesciunt omnis! Placeat, earum.
+            </p>
+        </div>
+        <div class="col-md-5 pt-3 pr-5 pl-5 pb-5">
+            <h4 class="text-light ml-5">Cast</h4>
+            <ul class="list-group text-light ml-3">
+                @foreach (var actor in Model.Actors)
+                {
+                    <li class="list-group-item bg-transparent border-right-0 border-left-0"><img class="rounded-circle m-3" src="" alt="" width="50" height="50">@Html.Display(actor)</li>
+                }
+                @{
+                //<li class="list-group-item bg-transparent border-top-0 border-right-0 border-left-0"><img class="rounded-circle m-3" src="" alt="" width="50" height="50">Actor 1</li>
+                //<li class="list-group-item bg-transparent border-right-0 border-left-0"><img class="rounded-circle m-3" src="" alt="" width="50" height="50">Actor 2</li>
+                //<li class="list-group-item bg-transparent border-right-0 border-left-0"><img class="rounded-circle m-3" src="" alt="" width="50" height="50">Actor 3</li>
+                //<li class="list-group-item bg-transparent border-bottom-0 border-right-0 border-left-0"><img class="rounded-circle m-3" src="" alt="" width="50" height="50">Actor 4</li>*@
+                }
+            </ul>
+        </div>
+    </div>
+</main>
+
+<!-- |||||||||||| FOOTER ||||||||||||| -->
+<footer class="main-footer-navbar ">
+    <section class="info">
+        <div class="container">
+            <div class="row row-sm-justify text-sm-left">
+                <!-- Brand -->
+                <a href="/" class="brand-name"><img src="/images/MayMovies.png" alt="MayMovies" style="margin-left: -8px;"></a>
+                <!-- END Brand -->
+            </div>
+
+            <div class="row justify-content-center mt-4">
+                <ul class="bottomnavlinks-list d-flex d-inline-flex">
+                    <li><a class="font-weight-bold" href="#contact">Contact</a></li> |
+                    <li><a class="font-weight-bold" href="#about">About</a></li> |
+                    <li>
+                        <a href="#facebook">
+                            <div class="container" id="social-link">
+                                <img src="/images/facebookicon.png" alt="Facebook" class="image img-fluid">
+                            </div>
+                        </a>
+                    </li>
+                    |
+                    <li>
+                        <a href="#twitter">
+                            <div class="container" id="social-link">
+                                <img src="/images/twittericon.png" alt="Twitter" class="image img-fluid">
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Copyright -->
+            <div class="row justify-content-center" style="margin-top: -30px; margin-bottom: -30px;">
+                <p class="copyright">
+                    MayMovies &copy;
+                    <span id="copyright-year">2021</span>
+                    All rights reserved.
+                    <span class="rd-navbar--switch-to-desktop"></span>
+                    <a href="#">Terms of use</a> |
+                    <a href="#">Privacy Policy</a>
+                    <!-- {%FOOTER_LINK} -->
+                </p>
+            </div>
+            <!-- END Copyright -->
+        </div>
+    </section>
+</footer>
+
